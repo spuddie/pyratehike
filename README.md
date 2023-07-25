@@ -22,3 +22,4 @@ and the difference can be found in
 ## Installation
 To install the package use the command `pip install
 git+https://github.com/spuddie/pyratehike`.
+
