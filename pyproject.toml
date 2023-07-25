@@ -1,0 +1,56 @@
+[project]
+name = "pyratehike"
+version = "1.0.1"
+authors = [
+    {name = "Steff Helsen", email = "RateHike@prophylaxis.be"},
+]
+description = "A package designed to bootstrap interest rate curves"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["dependencies"]
+
+[project.urls]
+"Homepage" = "https://github.com/spuddie/pyratehike"
+"Bug Tracker" = "https://github.com/spuddie/pyratehike/issues"
+
+[build-system]
+requires = ["hatchling", "hatch-requirements-txt"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 79
+
+[tool.coverage.report]
+exclude_also = [
+    "if TYPE_CHECKING:",
+]
+
+[tool.coverage.run]
+omit = [
+    "pytest/*",
+]
+
+[tool.hatch.build]
+include = [
+    "pyratehike/*.py",
+    "pyratehike/data/*.csv",
+]
+
+[tool.hatch.build.targets.sdist]
+packages = ["pyratehike"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["pyratehike"]
+
+[tool.hatch.metadata.hooks.requirements_txt]
+files = ["requirements.txt"]
+
+[tool.isort]
+profile = "black"
+line_length = 79
+

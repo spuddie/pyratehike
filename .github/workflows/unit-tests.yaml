@@ -1,0 +1,35 @@
+on: [push, pull_request]
+
+name: unit tests
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.python }})
+
+    strategy:
+      matrix:
+        config:
+          - {os: macos-latest,    python: '3.11'}
+          - {os: windows-latest,  python: '3.11'}
+          - {os: ubuntu-latest,   python: '3.7'}
+          - {os: ubuntu-latest,   python: '3.8'}
+          - {os: ubuntu-latest,   python: '3.9'}
+          - {os: ubuntu-latest,   python: '3.10'}
+          - {os: ubuntu-latest,   python: '3.11'}
+
+    steps:
+      - name: Set up Repo
+        uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.config.python }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.config.python }}
+      - name: Set up dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Unit tests - pytest
+        run: |
+          pytest --cov-report term-missing --cov=pyratehike
