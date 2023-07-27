@@ -18,6 +18,8 @@ from typing import List, Optional, Tuple
 from pyratehike._general import _Dispatcher
 from pyratehike.parameters_settings import rh_params
 
+__all__: List[str] = []
+
 
 class _InterpolationDataType:  # pragma: no cover
     """helper class to transform curve data (zero rates, discount

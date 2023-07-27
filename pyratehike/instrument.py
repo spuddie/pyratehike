@@ -19,6 +19,8 @@ from pyratehike.parameters_settings import RHSettings
 if TYPE_CHECKING:
     from pyratehike.curve import IRCurve
 
+__all__: List[str] = ["FinancialInstrument", "SyntheticInstrument"]
+
 
 class _Fixing:  # pragma: no cover
     """class providing a fixing method.

@@ -6,6 +6,8 @@ from typing import List, Optional
 from pyratehike.curve import IRCurve
 from pyratehike.instrument import FinancialInstrument
 
+__all__: List[str] = ["benchmark", "roundtrip"]
+
 
 def benchmark(
     curve: IRCurve,

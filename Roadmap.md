@@ -1,9 +1,6 @@
 # Roadmap
 
 ## Planning
-The package contains a spline correction method ("natural") that has
-not been tested yet. This small point will be cleared soon.
-
 At the moment, no future developments are planned. 
 
 ## Ideas

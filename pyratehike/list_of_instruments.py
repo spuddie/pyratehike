@@ -12,6 +12,8 @@ from pyratehike.curve import IRCurve
 from pyratehike.instrument import FinancialInstrument, SyntheticInstrument
 from pyratehike.parameters_settings import RHSettings
 
+__all__: List[str] = ["ListOfInstruments"]
+
 
 class _AddSynthetics:  # pragma: no cover
     """A class for adding synthetics to a ListOfInstruments.
