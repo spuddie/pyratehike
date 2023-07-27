@@ -29,6 +29,8 @@ from pyratehike._interpolation import (
 from pyratehike.instrument import FinancialInstrument
 from pyratehike.parameters_settings import RHSettings, rh_params
 
+__all__: List[str] = ["IRCurve"]
+
 
 class _BootstrapInfo:
     """class _BootstrapInfo
@@ -470,7 +472,7 @@ class IRCurve:
         ...     currency = "EUR",
         ...     synthetic_instruments = "OIS",
         ... )
-        >>> curve_ibor = IRCurve("EUR6M", settings_ibor)
+        >>> curve_ibor = IRCurve("EUR3M", settings_ibor)
 
         >>> curve_ibor.set_discount_curve(curve_ois)
         >>> list_ibor = ListOfInstruments(
@@ -948,7 +950,7 @@ class IRCurve:
         >>> list_ois = ListOfInstruments(settings, ois_path)
         >>> curve_ois.bootstrap(list_ois.instruments)
         >>> curve_ois.re_anchor(list_ois.instruments[0])
-        >>> curve_ois.plot(max_time = 10, forward_period = _Period(3, "MO")) #doctest: +SKIP
+        >>> curve_ois.plot(max_time = 10, forward_period = _Period(3, "MO"))  # doctest: +SKIP
         """
 
         # pylint: disable = too-many-locals, too-many-statements
@@ -1051,12 +1053,12 @@ class IRCurve:
         title2c: str = f"re-anchoring: {self._settings.re_anchoring}"
         title2: str = f"{title2a}, {title2b}, {title2c}"
         title3a: str = f"interpolation: {self._settings.interpolation_method}"
-        title3b: str = f"on {self._settings.interpolation_data_type}"
+        title3b: str = f"{self._settings.interpolation_data_type}"
         title3: str = f"{title3a} on {title3b}"
         title4a: str = f"spline correction: {self._settings.spline_correction}"
-        title4b: str = "synthetic instruments:"
+        title4b: str = "synthetic instruments"
         title4c: str = f"{self._settings.synthetic_instruments}"
-        title4: str = f"{title4a}, {title4b} {title4c}"
+        title4: str = f"{title4a}, {title4b}: {title4c}"
         plot_title: str = f"{title2}\n{title3}\n{title4}"
         fig.suptitle(self._name, fontsize=16)
         title(plot_title, fontsize=10)

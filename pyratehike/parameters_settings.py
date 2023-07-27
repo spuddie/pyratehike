@@ -4,10 +4,12 @@ This module defines a class for the package parameters and creates an
 instance of this class. Also a class for the settings is created.
 """
 
-from typing import Optional
+from typing import List, Optional
 
 from pyratehike._date_arithmetic import _RHDate
 from pyratehike._general import _check_inputs
+
+__all__: List[str] = ["rh_params", "RHSettings"]
 
 
 class _RHParameters:

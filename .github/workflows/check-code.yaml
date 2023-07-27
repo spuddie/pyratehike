@@ -38,5 +38,5 @@ jobs:
           pylint pyratehike
       - name: Check examples - doctest
         run: |
-          python3 -m doctest $(ls pyratehike/*.py | grep -v __)
+          python3 -m doctest pyratehike/*.py
 

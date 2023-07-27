@@ -16,7 +16,7 @@ inputs for the EURIBOR 3 months curve.
 
 examples
 --------
->>> from pyratehike import IRCurve, ListOfInstruments, RHSettings
+>>> from pyratehike import IRCurve, ListOfInstruments, RHSettings, roundtrip
 >>> from pathlib import Path
 >>> ibor_path = Path(__file__).parent / 'data/ibor.csv'
 >>> ois_path = Path(__file__).parent / 'data/ois.csv'
@@ -39,27 +39,32 @@ examples
 ...     synthetic_instruments = "OIS",
 ...     re_anchoring = "ONTN",
 ... )
->>> curve_ibor = IRCurve("EUR6M", settings_ibor)
+>>> curve_ibor = IRCurve("EUR3M", settings_ibor)
 >>> curve_ibor.set_discount_curve(curve_ois)
 >>> list_ibor = ListOfInstruments(
 ...     settings_ibor, ibor_path, curve_ois
 ... )
 >>> curve_ibor.bootstrap(list_ibor.instruments)
->>> curve_ibor.re_anchor(list_ibor.instruments)
 >>> curve_ibor.re_anchor(list_ois.instruments[0])
+>>> rt = roundtrip(curve_ibor, list_ibor.market_instruments)
+>>> curve_ibor.plot()  # doctest: +SKIP
 """
 
+from typing import List
 
-__all__ = [
-    "curve",
-    "instrument",
-    "list_of_instruments",
-    "metrics",
-    "parameters_settings",
+__all__: List[str] = [
+    "benchmark",
+    "FinancialInstrument",
+    "IRCurve",
+    "ListOfInstruments",
+    "rh_params",
+    "RHSettings",
+    "roundtrip",
+    "SyntheticInstrument",
 ]
 
-from .curve import IRCurve
-from .instrument import FinancialInstrument, SyntheticInstrument
-from .list_of_instruments import ListOfInstruments
-from .metrics import benchmark, roundtrip
-from .parameters_settings import RHSettings, rh_params
+from pyratehike.curve import IRCurve
+from pyratehike.instrument import FinancialInstrument, SyntheticInstrument
+from pyratehike.list_of_instruments import ListOfInstruments
+from pyratehike.metrics import benchmark, roundtrip
+from pyratehike.parameters_settings import RHSettings, rh_params
