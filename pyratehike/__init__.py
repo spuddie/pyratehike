@@ -46,6 +46,10 @@ examples
 ... )
 >>> curve_ibor.bootstrap(list_ibor.instruments)
 >>> curve_ibor.re_anchor(list_ois.instruments[0])
+>>> pillar_dates = curve_ibor.get_dates()
+>>> pillar_times = [curve_ibor.get_time(p) for p in range(curve_ibor.n_pillars)]
+>>> discount_factors = curve_ibor.get_discount_factors()
+>>> zero_rates = curve_ibor.get_zero_rates()
 >>> rt = roundtrip(curve_ibor, list_ibor.market_instruments)
 >>> curve_ibor.plot()  # doctest: +SKIP
 """
