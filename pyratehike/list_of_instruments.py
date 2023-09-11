@@ -181,9 +181,7 @@ class ListOfInstruments:
         csv_path: str,
         discount_curve: Optional[IRCurve] = None,
     ) -> None:
-        """constructor for ListOfFiles.
-
-        creates a ListOfFiles object using a csv input. The input
+        """creates a ListOfFiles object using a csv input. The input
         should have the structure as documented in the constructor
         of FinancialInstrument.
 

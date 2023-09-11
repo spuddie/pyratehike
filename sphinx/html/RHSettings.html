@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RHSettings &#8212; pyratehike 1.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=1ed6394b"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SyntheticInstrument" href="SyntheticInstrument.html" />
+    <link rel="prev" title="ListOfInstruments" href="ListOfInstruments.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="rhsettings">
+<h1>RHSettings<a class="headerlink" href="#rhsettings" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyratehike.RHSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyratehike.</span></span><span class="sig-name descname"><span class="pre">RHSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">today_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spot_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">re_anchoring</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'no'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spline_correction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'no'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synthetic_instruments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'no'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyratehike.RHSettings" title="Link to this definition">¶</a></dt>
+<dd><p>class for settings</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>currency<span class="classifier">str</span></dt><dd><p>EUR and GBP are currently supported</p>
+</dd>
+<dt>interpolation_method<span class="classifier">str, optional</span></dt><dd><p>interpolation method (linear or bessel)</p>
+</dd>
+<dt>interpolation_data_type<span class="classifier">str, optional</span></dt><dd><p>interpolation data type (zero, df, logdf)</p>
+</dd>
+<dt>re_anchoring: str, optional</dt><dd><p>re-anchoring method to apply (no [default], date, 11, ONTN)</p>
+</dd>
+<dt>spline_correction<span class="classifier">str, optional</span></dt><dd><p>spline correction (no [default], linear, natural)</p>
+</dd>
+<dt>spot_date<span class="classifier">_RHDate, optional</span></dt><dd><p>spot date for a curve</p>
+</dd>
+<dt>synthetic_instruments<span class="classifier">str, optional</span></dt><dd><p>which synthetic instruments to add (no [default], OIS)</p>
+</dd>
+<dt>today_date<span class="classifier">_RHDate</span></dt><dd><p>today’s date</p>
+</dd>
+</dl>
+</section>
+<section id="parameters">
+<h2>parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>currency<span class="classifier">str</span></dt><dd><p>the currency (currently only EUR and GBP are supported)</p>
+</dd>
+<dt>today_date<span class="classifier">str</span></dt><dd><p>today’s date yyyy-mm-dd</p>
+</dd>
+<dt>interpolation_method<span class="classifier">str, optional</span></dt><dd><p>the interpolation method (linear, bessel)</p>
+</dd>
+<dt>interpolation_data_type: str, optional</dt><dd><p>the interpolation data type (zero, df, logdf)</p>
+</dd>
+<dt>re_anchoring: str, optional</dt><dd><p>re-anchoring method to apply (no [default], date, 11, ONTN)</p>
+</dd>
+<dt>spot_date: str, optional</dt><dd><p>the spot date yyyy-mm-dd</p>
+</dd>
+<dt>spline_correction: str, optional</dt><dd><p>the spline correction to apply (no [default], linear, natural)</p>
+</dd>
+<dt>synthetic_instruments: str, optional</dt><dd><p>the synthetic instruments to add (no [default], OIS)</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<p>None</p>
+</section>
+<section id="examples">
+<h2>examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2022-02-22&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;zero&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">re_anchoring</span> <span class="o">=</span> <span class="s2">&quot;ONTN&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">spline_correction</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">synthetic_instruments</span> <span class="o">=</span> <span class="s2">&quot;OIS&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">spot_date</span> <span class="o">=</span> <span class="s2">&quot;2022-02-22&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyratehike</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="classes.html">Classes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FinancialInstrument.html">FinancialInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IRCurve.html">IRCurve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ListOfInstruments.html">ListOfInstruments</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RHSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SyntheticInstrument.html">SyntheticInstrument</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hiddenclasses.html">Hidden Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Objects</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+  </body>
+</html>

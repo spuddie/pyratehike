@@ -160,7 +160,7 @@ class FinancialInstrument:
     --------
     >>> settings = RHSettings(
     ...     today_date = "2023-07-06",
-    ...     currency = "EUR"
+    ...     currency = "EUR",
     ... )
     >>> inst_dict = {
     ...     "quote": "0.01",
@@ -218,9 +218,7 @@ class FinancialInstrument:
     def __init__(
         self, inst_dict: Dict[str, str], settings: RHSettings
     ) -> None:
-        """constructor of FinancialInstrument.
-
-        parameters
+        """parameters
         ----------
         inst_dict : dict(str, str)
             dictionary of instrument specific information with the
@@ -230,10 +228,8 @@ class FinancialInstrument:
             mat_no: numeric component of maturity
             mat_unit: unit for maturity (YR, MO, WK, DY)
             insttype: instrument type (deposit, ois, fra, future, irs)
-            start_no: numeric component of start delay, for forward
-                starting instruments
-            start_unit: unit for start delay (YR, MO, WK, DY) for
-                forward starting instruments
+            start_no: numeric component of start delay, for forward starting instruments
+            start_unit: unit for start delay (YR, MO, WK, DY) for forward starting instruments
             tenor_m: tenor in months, for irs
 
         settings : RHSettings
@@ -528,9 +524,7 @@ class SyntheticInstrument(FinancialInstrument):
     # pylint: disable=super-init-not-called
 
     def __init__(self, discount_factor: float, maturity_date: _RHDate) -> None:
-        """constructor of SyntheticInstrument
-
-        parameters
+        """parameters
         ----------
         discount_factor : float
             discount factor

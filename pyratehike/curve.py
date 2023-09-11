@@ -62,9 +62,7 @@ class _BootstrapInfo:
         function_evaluations: int,
         iterations: int,
     ) -> None:
-        """constructor for class _BootstrapInfo
-
-        parameters
+        """parameters
         ----------
         discount_factor_convergence : float
             the discount factor update difference in the last iteration
@@ -296,9 +294,7 @@ class IRCurve:
     spot_date: _RHDate
 
     def __init__(self, name: str, settings: RHSettings) -> None:
-        """constructor for IRCurve.
-
-        parameters
+        """parameters
         ----------
         name : str
             a name for the curve

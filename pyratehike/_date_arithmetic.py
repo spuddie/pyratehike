@@ -27,9 +27,7 @@ class _RHDate:
     def __init__(
         self, date_string: Optional[str] = None, date_: Optional[date] = None
     ) -> None:
-        """constructor for _RHDate.
-
-        precedence : date_string, date_. One of the two needs to be
+        """the precedence is date_string, date_. One of the two needs to be
         provided.
 
         parameters
@@ -218,9 +216,7 @@ class _Period:
     unit: str
 
     def __init__(self, number: int, unit: str) -> None:
-        """constructor for _Period.
-
-        parameters
+        """parameters
         ----------
         number : int
             the number of units represented by the object

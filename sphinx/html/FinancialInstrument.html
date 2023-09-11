@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FinancialInstrument &#8212; pyratehike 1.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=1ed6394b"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="IRCurve" href="IRCurve.html" />
+    <link rel="prev" title="Classes" href="classes.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="financialinstrument">
+<h1>FinancialInstrument<a class="headerlink" href="#financialinstrument" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyratehike.</span></span><span class="sig-name descname"><span class="pre">FinancialInstrument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="RHSettings.html#pyratehike.RHSettings" title="pyratehike.parameters_settings.RHSettings"><span class="pre">RHSettings</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyratehike.FinancialInstrument" title="Link to this definition">¶</a></dt>
+<dd><p>represents a financial instrument.</p>
+<section id="examples">
+<h2>examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inst_dict</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;quote&quot;</span><span class="p">:</span> <span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;mat_no&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;mat_unit&quot;</span><span class="p">:</span> <span class="s2">&quot;WK&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;insttype&quot;</span><span class="p">:</span> <span class="s2">&quot;deposit&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">depo1w</span> <span class="o">=</span> <span class="n">FinancialInstrument</span><span class="p">(</span><span class="n">inst_dict</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl>
+<dt>inst_dict<span class="classifier">dict(str, str)</span></dt><dd><p>dictionary of instrument specific information with the
+following structure:</p>
+<p>quote: the market quote
+mat_no: numeric component of maturity
+mat_unit: unit for maturity (YR, MO, WK, DY)
+insttype: instrument type (deposit, ois, fra, future, irs)
+start_no: numeric component of start delay, for forward starting instruments
+start_unit: unit for start delay (YR, MO, WK, DY) for forward starting instruments
+tenor_m: tenor in months, for irs</p>
+</dd>
+<dt>settings<span class="classifier">RHSettings</span></dt><dd><p>global information for the instrument</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<p>None</p>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.discount_factor">
+<span class="sig-name descname"><span class="pre">discount_factor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#pyratehike.FinancialInstrument.discount_factor" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.fix_schedule">
+<span class="sig-name descname"><span class="pre">fix_schedule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyratehike.FinancialInstrument.fix_schedule" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.float_schedule">
+<span class="sig-name descname"><span class="pre">float_schedule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyratehike.FinancialInstrument.float_schedule" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.insttype">
+<span class="sig-name descname"><span class="pre">insttype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyratehike.FinancialInstrument.insttype" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.maturity_date">
+<span class="sig-name descname"><span class="pre">maturity_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></em><a class="headerlink" href="#pyratehike.FinancialInstrument.maturity_date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.payment_schedule">
+<span class="sig-name descname"><span class="pre">payment_schedule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyratehike.FinancialInstrument.payment_schedule" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.quote">
+<span class="sig-name descname"><span class="pre">quote</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#pyratehike.FinancialInstrument.quote" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.spot_date">
+<span class="sig-name descname"><span class="pre">spot_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></em><a class="headerlink" href="#pyratehike.FinancialInstrument.spot_date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.start_date">
+<span class="sig-name descname"><span class="pre">start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></em><a class="headerlink" href="#pyratehike.FinancialInstrument.start_date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.busday_adjust">
+<span class="sig-name descname"><span class="pre">busday_adjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></span></span><a class="headerlink" href="#pyratehike.FinancialInstrument.busday_adjust" title="Link to this definition">¶</a></dt>
+<dd><p>move a date to the next business date.</p>
+<p>calls upon the busday_adjust function of the _busday_adjuster
+attribute.</p>
+<section id="id1">
+<h3>parameters<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>datum<span class="classifier">_RHDate</span></dt><dd><p>the date to adjust</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>returns<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>_RHDate</dt><dd><p>the adjusted date</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.daycount">
+<span class="sig-name descname"><span class="pre">daycount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyratehike.FinancialInstrument.daycount" title="Link to this definition">¶</a></dt>
+<dd><p>calculate the year fraction between every element of the
+input list.</p>
+<p>calls upon the daycount function of the _daycounter attribute.</p>
+<section id="id3">
+<h3>parameters<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>dates<span class="classifier">list of _RHDate</span></dt><dd><p>the dates</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h3>returns<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>list of float</dt><dd><p>the year fractions</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.fixing">
+<span class="sig-name descname"><span class="pre">fixing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="IRCurve.html#pyratehike.IRCurve" title="pyratehike.IRCurve"><span class="pre">IRCurve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyratehike.FinancialInstrument.fixing" title="Link to this definition">¶</a></dt>
+<dd><p>fixing of a Financial Instrument.</p>
+<p>Determining the fair insterest rate for the instrument based
+on an interest rate curve.</p>
+<section id="id5">
+<h3>parameters<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>curve<span class="classifier">IRCurve</span></dt><dd><p>an interest rate curve</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>returns<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>float</dt><dd><p>the fair interest rate</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>examples<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyratehike</span> <span class="kn">import</span> <span class="n">IRCurve</span><span class="p">,</span> <span class="n">ListOfInstruments</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">fixing</span><span class="p">(</span><span class="n">curve_ois</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inst_dict</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;quote&quot;</span><span class="p">:</span> <span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;mat_no&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;mat_unit&quot;</span><span class="p">:</span> <span class="s2">&quot;WK&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;insttype&quot;</span><span class="p">:</span> <span class="s2">&quot;deposit&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">depo1w</span> <span class="o">=</span> <span class="n">FinancialInstrument</span><span class="p">(</span><span class="n">inst_dict</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">depo1w</span><span class="o">.</span><span class="n">fixing</span><span class="p">(</span><span class="n">curve_ois</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.FinancialInstrument.next_date">
+<span class="sig-name descname"><span class="pre">next_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="_Period.html#pyratehike._date_arithmetic._Period" title="pyratehike._date_arithmetic._Period"><span class="pre">_Period</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyratehike.FinancialInstrument.next_date" title="Link to this definition">¶</a></dt>
+<dd><p>calculate future dates.</p>
+<p>calls upon the calc_next_date function of the _calc_next_date
+attribute.</p>
+<section id="id8">
+<h3>parameters<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>datum<span class="classifier">_RHDate</span></dt><dd><p>the date to start from</p>
+</dd>
+<dt>period<span class="classifier">_Period</span></dt><dd><p>represents the period to move forward</p>
+</dd>
+<dt>length<span class="classifier">int, optional</span></dt><dd><p>the length of the output list (default: 1)</p>
+</dd>
+<dt>adjust<span class="classifier">bool, optional</span></dt><dd><p>should the results be adjusted to business days (default: True)</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>returns<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>list of _RHDate</dt><dd><p>the calculate dates</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyratehike</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="classes.html">Classes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">FinancialInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IRCurve.html">IRCurve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ListOfInstruments.html">ListOfInstruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RHSettings.html">RHSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SyntheticInstrument.html">SyntheticInstrument</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hiddenclasses.html">Hidden Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Objects</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+  </body>
+</html>

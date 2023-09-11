@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Package documentation &#8212; pyratehike 1.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=1ed6394b"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Functions" href="functions.html" />
+    <link rel="prev" title="Welcome to pyratehike’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-documentation">
+<h1>Package documentation<a class="headerlink" href="#package-documentation" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p id="module-pyratehike">pyRateHike: Ramp Up the Quality of Your Interest Rate Curves.</p>
+<p>pyratehike is a package designed to bootstrap interest rate
+curves in a multi-curve framework, in
+particular IBOR curves and OIS curves. It was created as part of a
+master’s thesis project, check out the vignette for more details. This
+thesis contains all the details on the implementation.</p>
+<p>the best start is to check the documentation for IRCurve (in
+particular the IRCurve.bootstrap method), FinancialInstrument or 
+ListOfInstruments.</p>
+<p>The package comes with two example data files: data/ois.csv
+representing inputs the ESTR OIS curve and data/ibor.csv representing
+inputs for the EURIBOR 3 months curve.</p>
+<section id="examples">
+<h2>examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyratehike</span> <span class="kn">import</span> <span class="n">IRCurve</span><span class="p">,</span> <span class="n">ListOfInstruments</span><span class="p">,</span> <span class="n">RHSettings</span><span class="p">,</span> <span class="n">roundtrip</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ibor_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ibor.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings_ois</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings_ois</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings_ois</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings_ibor</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">synthetic_instruments</span> <span class="o">=</span> <span class="s2">&quot;OIS&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">re_anchoring</span> <span class="o">=</span> <span class="s2">&quot;ONTN&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ibor</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;EUR3M&quot;</span><span class="p">,</span> <span class="n">settings_ibor</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ibor</span><span class="o">.</span><span class="n">set_discount_curve</span><span class="p">(</span><span class="n">curve_ois</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ibor</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">settings_ibor</span><span class="p">,</span> <span class="n">ibor_path</span><span class="p">,</span> <span class="n">curve_ois</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ibor</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ibor</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ibor</span><span class="o">.</span><span class="n">re_anchor</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pillar_dates</span> <span class="o">=</span> <span class="n">curve_ibor</span><span class="o">.</span><span class="n">get_dates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pillar_times</span> <span class="o">=</span> <span class="p">[</span><span class="n">curve_ibor</span><span class="o">.</span><span class="n">get_time</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">curve_ibor</span><span class="o">.</span><span class="n">n_pillars</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">discount_factors</span> <span class="o">=</span> <span class="n">curve_ibor</span><span class="o">.</span><span class="n">get_discount_factors</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zero_rates</span> <span class="o">=</span> <span class="n">curve_ibor</span><span class="o">.</span><span class="n">get_zero_rates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rt</span> <span class="o">=</span> <span class="n">roundtrip</span><span class="p">(</span><span class="n">curve_ibor</span><span class="p">,</span> <span class="n">list_ibor</span><span class="o">.</span><span class="n">market_instruments</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ibor</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>  
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyratehike</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hiddenclasses.html">Hidden Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Objects</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+  </body>
+</html>

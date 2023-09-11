@@ -717,9 +717,7 @@ class _InterpolationMethod:
         interpolation_method: str,
         spline_correction: str,
     ) -> None:
-        """constructor for _InterpolationMethod.
-
-        parameters
+        """parameters
         ----------
         interpolation_method : str
             the interpolation method

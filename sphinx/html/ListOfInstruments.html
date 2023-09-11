@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ListOfInstruments &#8212; pyratehike 1.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=1ed6394b"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="RHSettings" href="RHSettings.html" />
+    <link rel="prev" title="IRCurve" href="IRCurve.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="listofinstruments">
+<h1>ListOfInstruments<a class="headerlink" href="#listofinstruments" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyratehike.ListOfInstruments">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyratehike.</span></span><span class="sig-name descname"><span class="pre">ListOfInstruments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="RHSettings.html#pyratehike.RHSettings" title="pyratehike.parameters_settings.RHSettings"><span class="pre">RHSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount_curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="IRCurve.html#pyratehike.IRCurve" title="pyratehike.curve.IRCurve"><span class="pre">IRCurve</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyratehike.ListOfInstruments" title="Link to this definition">¶</a></dt>
+<dd><p>a list of instruments used as input to the bootstrapping algorithm.</p>
+<p>A CSV file is read for a list of instruments.
+The _AddSynthetics class is used to create the list of
+synthetic instruments.</p>
+<section id="examples">
+<h2>examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings_ois</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings_ois</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings_ois</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">settings_ibor</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">synthetic_instruments</span> <span class="o">=</span> <span class="s2">&quot;OIS&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ibor_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ibor.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ibor</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">settings_ibor</span><span class="p">,</span> <span class="n">ibor_path</span><span class="p">,</span> <span class="n">curve_ois</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>creates a ListOfFiles object using a csv input. The input
+should have the structure as documented in the constructor
+of FinancialInstrument.</p>
+<p>If required by the settings, and if a discount is provided,
+synthetic instruments will be added.</p>
+</section>
+<section id="parameters">
+<h2>parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>settings<span class="classifier">RHSettings</span></dt><dd><p>the settings to be used when constructing the instruments</p>
+</dd>
+<dt>csv_path<span class="classifier">str, optional</span></dt><dd><p>the path to the csv input file</p>
+</dd>
+<dt>discount_curve<span class="classifier">IRCurve, optional</span></dt><dd><p>an interest rate curve, can be used to calculate the
+synthetic instruments</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<p>None</p>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.ListOfInstruments.market_instruments">
+<span class="sig-name descname"><span class="pre">market_instruments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="FinancialInstrument.html#pyratehike.FinancialInstrument" title="pyratehike.instrument.FinancialInstrument"><span class="pre">FinancialInstrument</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyratehike.ListOfInstruments.market_instruments" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyratehike.ListOfInstruments.instruments">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">instruments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="FinancialInstrument.html#pyratehike.FinancialInstrument" title="pyratehike.instrument.FinancialInstrument"><span class="pre">FinancialInstrument</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyratehike.ListOfInstruments.instruments" title="Link to this definition">¶</a></dt>
+<dd><p>the instruments contained in the object.</p>
+<section id="id1">
+<h3>parameters<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>(no parameters)</p>
+</section>
+<section id="id2">
+<h3>returns<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>list of FinancialInstrument</dt><dd><p>the synthetic and market instruments contained in the
+object</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyratehike</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="classes.html">Classes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FinancialInstrument.html">FinancialInstrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IRCurve.html">IRCurve</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ListOfInstruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RHSettings.html">RHSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SyntheticInstrument.html">SyntheticInstrument</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hiddenclasses.html">Hidden Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Objects</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+  </body>
+</html>

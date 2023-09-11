@@ -43,7 +43,6 @@ class _RHParameters:
     spline_max_sweeps: int
 
     def __init__(self) -> None:
-        """constructor for the _RHParameters class."""
         self.root_find_tol = 1e-12
         self.root_find_interval_radius = 1e-1
         self.spline_df_convergence_tol = 1e-12
@@ -105,9 +104,7 @@ class RHSettings:
         spline_correction: str = "no",
         synthetic_instruments: str = "no",
     ) -> None:
-        """constructor for the _RHSettings class.
-
-        parameters
+        """parameters
         ----------
         currency : str
             the currency (currently only EUR and GBP are supported)

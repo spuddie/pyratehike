@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IRCurve &#8212; pyratehike 1.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=1ed6394b"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ListOfInstruments" href="ListOfInstruments.html" />
+    <link rel="prev" title="FinancialInstrument" href="FinancialInstrument.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ircurve">
+<h1>IRCurve<a class="headerlink" href="#ircurve" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyratehike.IRCurve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyratehike.</span></span><span class="sig-name descname"><span class="pre">IRCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="RHSettings.html#pyratehike.RHSettings" title="pyratehike.parameters_settings.RHSettings"><span class="pre">RHSettings</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyratehike.IRCurve" title="Link to this definition">¶</a></dt>
+<dd><p>An IRCurve represents an interest rate curve.</p>
+<p>Its constructor uses a RHSettings object to decide on the
+characteristics. After that, the bootstrap method constructs the
+curve. The main getter methods get_zero_rates,
+get_discount_factors and get_insta_forwards allow to extract
+data.</p>
+<section id="examples">
+<h2>examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>name<span class="classifier">str</span></dt><dd><p>a name for the curve</p>
+</dd>
+<dt>settings<span class="classifier">RHSettings</span></dt><dd><p>the settings to use</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<p>None</p>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.bootstrap_info">
+<span class="sig-name descname"><span class="pre">bootstrap_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="_BootstrapInfo.html#pyratehike.curve._BootstrapInfo" title="pyratehike.curve._BootstrapInfo"><span class="pre">_BootstrapInfo</span></a></em><a class="headerlink" href="#pyratehike.IRCurve.bootstrap_info" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.spot_date">
+<span class="sig-name descname"><span class="pre">spot_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></em><a class="headerlink" href="#pyratehike.IRCurve.spot_date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.spot_date_orig">
+<span class="sig-name descname"><span class="pre">spot_date_orig</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></em><a class="headerlink" href="#pyratehike.IRCurve.spot_date_orig" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.bootstrap">
+<span class="sig-name descname"><span class="pre">bootstrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="FinancialInstrument.html#pyratehike.FinancialInstrument" title="pyratehike.instrument.FinancialInstrument"><span class="pre">FinancialInstrument</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyratehike.IRCurve.bootstrap" title="Link to this definition">¶</a></dt>
+<dd><p>bootstrap the curve</p>
+<section id="id1">
+<h3>parameters<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>instrument_list<span class="classifier">list of FinancialInstrument</span></dt><dd><p>the instrument list to use for bootstrapping</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>returns<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+<section id="id3">
+<h3>examples<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings_ois</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings_ois</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyratehike</span> <span class="kn">import</span> <span class="n">ListOfInstruments</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ibor_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ibor.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings_ois</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings_ibor</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">synthetic_instruments</span> <span class="o">=</span> <span class="s2">&quot;OIS&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ibor</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;EUR3M&quot;</span><span class="p">,</span> <span class="n">settings_ibor</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ibor</span><span class="o">.</span><span class="n">set_discount_curve</span><span class="p">(</span><span class="n">curve_ois</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ibor</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">settings_ibor</span><span class="p">,</span> <span class="n">ibor_path</span><span class="p">,</span> <span class="n">curve_ois</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ibor</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ibor</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.busday_adjust">
+<span class="sig-name descname"><span class="pre">busday_adjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></span></span><a class="headerlink" href="#pyratehike.IRCurve.busday_adjust" title="Link to this definition">¶</a></dt>
+<dd><p>move a date to the next business date.</p>
+<p>calls upon the busday_adjust function of the _busday_adjuster
+attribute.</p>
+<section id="id4">
+<h3>parameters<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>datum<span class="classifier">_RHDate</span></dt><dd><p>the date to adjust</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>returns<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>_RHDate</dt><dd><p>the adjusted date</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.daycount">
+<span class="sig-name descname"><span class="pre">daycount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyratehike.IRCurve.daycount" title="Link to this definition">¶</a></dt>
+<dd><p>calculate the year fraction from the spot date to the
+target date.</p>
+<p>calls upon the daycount function of the _daycounter attribute.</p>
+<section id="id6">
+<h3>parameters<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>target_date<span class="classifier">_RHDate</span></dt><dd><p>the second date</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>returns<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>float</dt><dd><p>the year fraction</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.get_dates">
+<span class="sig-name descname"><span class="pre">get_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyratehike.IRCurve.get_dates" title="Link to this definition">¶</a></dt>
+<dd><p>get the pillar dates for the curve.</p>
+<section id="id8">
+<h3>parameters<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>times: list of float or None</dt><dd><p>request dates for specific year fractions; if None the
+pillar dates are returned</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>returns<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<p>list of _RHDate</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.get_discount_curve">
+<span class="sig-name descname"><span class="pre">get_discount_curve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pyratehike.IRCurve" title="pyratehike.curve.IRCurve"><span class="pre">IRCurve</span></a></span></span><a class="headerlink" href="#pyratehike.IRCurve.get_discount_curve" title="Link to this definition">¶</a></dt>
+<dd><p>get the associated discount curve.</p>
+<section id="id10">
+<h3>parameters<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<p>(no paramters)</p>
+</section>
+<section id="id11">
+<h3>returns<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>IRCurve</dt><dd><p>The discount curve associated to the object.
+If no discount curve is associated, this means endogenous
+discounting is used and self is returned.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.get_discount_factors">
+<span class="sig-name descname"><span class="pre">get_discount_factors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pillars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyratehike.IRCurve.get_discount_factors" title="Link to this definition">¶</a></dt>
+<dd><p>get the discount factors.</p>
+<p>order of precedence: pillars, dates, times. If all are
+missing, the discount factors for all pillars are returned.</p>
+<section id="id12">
+<h3>parameters<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>dates: list of _RHDate, optional</dt><dd><p>the dates for which the discount factors are required</p>
+</dd>
+<dt>times: list of float, optional</dt><dd><p>the times for which the discount factors are required</p>
+</dd>
+<dt>pillars: list of int, optional</dt><dd><p>the pillars for which the discount factors are required</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h3>returns<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>list of float</dt><dd><p>the discount factors.</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h3>examples<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyratehike</span> <span class="kn">import</span> <span class="n">ListOfInstruments</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df_all</span> <span class="o">=</span> <span class="n">curve_ois</span><span class="o">.</span><span class="n">get_discount_factors</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_123</span> <span class="o">=</span> <span class="n">curve_ois</span><span class="o">.</span><span class="n">get_discount_factors</span><span class="p">(</span><span class="n">pillars</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.get_insta_forwards">
+<span class="sig-name descname"><span class="pre">get_insta_forwards</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pillars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyratehike.IRCurve.get_insta_forwards" title="Link to this definition">¶</a></dt>
+<dd><p>get the instantaneous forward rates.</p>
+<p>order of precedence: pillars, dates, times. If all are
+missing, the instantaneous forward rates for all pillars are returned.</p>
+<section id="id15">
+<h3>parameters<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>dates: list of _RHDate, optional</dt><dd><p>the dates for which the instantaneous forward rates are required</p>
+</dd>
+<dt>times: list of float, optional</dt><dd><p>the times for which the instantaneous forward rates are required</p>
+</dd>
+<dt>pillars: list of int, optional</dt><dd><p>the pillars for which the instantaneous forward rates are required</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>returns<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>list of float</dt><dd><p>the instantaneous forward rates.</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h3>examples<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyratehike</span> <span class="kn">import</span> <span class="n">ListOfInstruments</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">if_all</span> <span class="o">=</span> <span class="n">curve_ois</span><span class="o">.</span><span class="n">get_insta_forwards</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">if_123</span> <span class="o">=</span> <span class="n">curve_ois</span><span class="o">.</span><span class="n">get_insta_forwards</span><span class="p">(</span><span class="n">pillars</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.get_time">
+<span class="sig-name descname"><span class="pre">get_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pillar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyratehike.IRCurve.get_time" title="Link to this definition">¶</a></dt>
+<dd><p>get the year fraction associated with a pillar.</p>
+<section id="id18">
+<h3>parameters<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>pillar<span class="classifier">int</span></dt><dd><p>the pillar for which the information is required</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h3>returns<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>float</dt><dd><p>the year fraction required</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.get_zero_rates">
+<span class="sig-name descname"><span class="pre">get_zero_rates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pillars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyratehike.IRCurve.get_zero_rates" title="Link to this definition">¶</a></dt>
+<dd><p>get the zero rates.</p>
+<p>order of precedence: pillars, dates, times. If all are
+missing, the zero rates for all pillars are returned.</p>
+<section id="id20">
+<h3>parameters<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>dates: list of _RHDate, optional</dt><dd><p>the dates for which the zero rates are required</p>
+</dd>
+<dt>times: list of float, optional</dt><dd><p>the times for which the zero rates are required</p>
+</dd>
+<dt>pillars: list of int, optional</dt><dd><p>the pillars for which the zero rates are required</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h3>returns<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>list of float</dt><dd><p>the zero rates.</p>
+</dd>
+</dl>
+</section>
+<section id="id22">
+<h3>examples<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyratehike</span> <span class="kn">import</span> <span class="n">ListOfInstruments</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zero_all</span> <span class="o">=</span> <span class="n">curve_ois</span><span class="o">.</span><span class="n">get_zero_rates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zero_123</span> <span class="o">=</span> <span class="n">curve_ois</span><span class="o">.</span><span class="n">get_zero_rates</span><span class="p">(</span><span class="n">pillars</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.n_pillars">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_pillars</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyratehike.IRCurve.n_pillars" title="Link to this definition">¶</a></dt>
+<dd><p>Getter method for _interpolation_method.n_pillars.</p>
+<section id="id23">
+<h3>parameters<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<p>(no parameters)</p>
+</section>
+<section id="id24">
+<h3>returns<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>int</dt><dd><p>the value of _interpolation_method.n_pillars</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.next_date">
+<span class="sig-name descname"><span class="pre">next_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="_Period.html#pyratehike._date_arithmetic._Period" title="pyratehike._date_arithmetic._Period"><span class="pre">_Period</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyratehike.IRCurve.next_date" title="Link to this definition">¶</a></dt>
+<dd><p>calculate future dates.</p>
+<p>calls upon the calc_next_date function of the _next_date
+attribute.</p>
+<section id="id25">
+<h3>parameters<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>datum<span class="classifier">_RHDate</span></dt><dd><p>the date to start from</p>
+</dd>
+<dt>period<span class="classifier">_Period</span></dt><dd><p>represents the period to move forward</p>
+</dd>
+<dt>length<span class="classifier">int, optional</span></dt><dd><p>the length of the output list (default: 1)</p>
+</dd>
+<dt>adjust<span class="classifier">bool, optional</span></dt><dd><p>should the results be adjusted to business days (default: True)</p>
+</dd>
+</dl>
+</section>
+<section id="id26">
+<h3>returns<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>list of _RHDate</dt><dd><p>the calculate dates</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times:</span> <span class="pre">~typing.List[float]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time:</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_points:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_period:</span> <span class="pre">~pyratehike._date_arithmetic._Period</span> <span class="pre">=</span> <span class="pre">&lt;pyratehike._date_arithmetic._Period</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyratehike.IRCurve.plot" title="Link to this definition">¶</a></dt>
+<dd><p>plot the curve</p>
+<section id="id27">
+<h3>parameters<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>times<span class="classifier">list of float, optional</span></dt><dd><p>a list of times used as x grid for the plot.</p>
+</dd>
+<dt>max_time<span class="classifier">float, optional</span></dt><dd><p>the final time to plot. The default value is the end
+point of the curve.</p>
+</dd>
+<dt>n_points<span class="classifier">int, optional</span></dt><dd><p>the number of points used in the plot. The default value
+is 500.</p>
+</dd>
+<dt>forward_period<span class="classifier">_Period, optional</span></dt><dd><p>the period used to calculate the discrete forward rates.
+The default value is _Period(6, “MO”).</p>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h3>returns<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+<section id="id29">
+<h3>examples<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">re_anchoring</span> <span class="o">=</span> <span class="s2">&quot;ONTN&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyratehike</span> <span class="kn">import</span> <span class="n">ListOfInstruments</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">re_anchor</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_time</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">forward_period</span> <span class="o">=</span> <span class="n">_Period</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;MO&quot;</span><span class="p">))</span>  
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.re_anchor">
+<span class="sig-name descname"><span class="pre">re_anchor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depo_spot_next</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FinancialInstrument.html#pyratehike.FinancialInstrument" title="pyratehike.instrument.FinancialInstrument"><span class="pre">FinancialInstrument</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyratehike.IRCurve.re_anchor" title="Link to this definition">¶</a></dt>
+<dd><p>re-anchoring method.</p>
+<section id="id30">
+<h3>parameters<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>depo_spot_next<span class="classifier">FinancialInstrument, optional</span></dt><dd><p>the spot-next depo, only used in ReAnchorMethodONTN</p>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h3>returns<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+<section id="id32">
+<h3>examples<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">settings</span> <span class="o">=</span> <span class="n">RHSettings</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">today_date</span> <span class="o">=</span> <span class="s2">&quot;2023-07-06&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_data_type</span> <span class="o">=</span> <span class="s2">&quot;logdf&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">interpolation_method</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">currency</span> <span class="o">=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">re_anchoring</span> <span class="o">=</span> <span class="s2">&quot;ONTN&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span> <span class="o">=</span> <span class="n">IRCurve</span><span class="p">(</span><span class="s2">&quot;ESTR&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyratehike</span> <span class="kn">import</span> <span class="n">ListOfInstruments</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ois_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;data/ois.csv&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_ois</span> <span class="o">=</span> <span class="n">ListOfInstruments</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">ois_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curve_ois</span><span class="o">.</span><span class="n">re_anchor</span><span class="p">(</span><span class="n">list_ois</span><span class="o">.</span><span class="n">instruments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.set_discount_curve">
+<span class="sig-name descname"><span class="pre">set_discount_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyratehike.IRCurve" title="pyratehike.curve.IRCurve"><span class="pre">IRCurve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyratehike.IRCurve.set_discount_curve" title="Link to this definition">¶</a></dt>
+<dd><p>set the associated discount curve.</p>
+<section id="id33">
+<h3>parameters<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>curve<span class="classifier">IRCurve</span></dt><dd><p>the associated discount curve</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h3>returns<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.set_times">
+<span class="sig-name descname"><span class="pre">set_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyratehike.IRCurve.set_times" title="Link to this definition">¶</a></dt>
+<dd><p>method for setting the times of the curve.</p>
+<p>calls the set_times method of the _interpolation_method
+object. The interpolation coefficients are initialized at
+None.</p>
+<section id="id35">
+<h3>parameters<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>times<span class="classifier">list of float</span></dt><dd><p>the times</p>
+</dd>
+</dl>
+</section>
+<section id="id36">
+<h3>returns<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.today_date">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">today_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="_RHDate.html#pyratehike._date_arithmetic._RHDate" title="pyratehike._date_arithmetic._RHDate"><span class="pre">_RHDate</span></a></em><a class="headerlink" href="#pyratehike.IRCurve.today_date" title="Link to this definition">¶</a></dt>
+<dd><p>Getter method for _settings.today_date.</p>
+<section id="id37">
+<h3>parameters<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
+<p>(no parameters)</p>
+</section>
+<section id="id38">
+<h3>returns<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>_RHDate</dt><dd><p>the value of _settings.today_date</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyratehike.IRCurve.update_all_discount_factors">
+<span class="sig-name descname"><span class="pre">update_all_discount_factors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">discount_factors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyratehike.IRCurve.update_all_discount_factors" title="Link to this definition">¶</a></dt>
+<dd><p>update all discount factors.</p>
+<section id="id39">
+<h3>parameters<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>dfs<span class="classifier">list of float</span></dt><dd><p>the discount factors</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h3>returns<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyratehike</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="classes.html">Classes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FinancialInstrument.html">FinancialInstrument</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IRCurve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ListOfInstruments.html">ListOfInstruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RHSettings.html">RHSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SyntheticInstrument.html">SyntheticInstrument</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hiddenclasses.html">Hidden Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Objects</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+  </body>
+</html>
